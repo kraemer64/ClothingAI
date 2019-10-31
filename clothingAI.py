@@ -50,3 +50,6 @@ model = keras.Sequential([
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
+
+# Model training
+model.fit(train_images, train_labels, epochs=10)
