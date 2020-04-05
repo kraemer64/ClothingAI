@@ -48,7 +48,14 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 # Training the model
-model.fit(train_images, train_labels, epochs=80)
+model.fit(train_images, train_labels, epochs=10)
 
 # Compare model performance on test dataset
 test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
+print('\nTest accuracy:', test_acc)
+
+# Attach Softmax layer to convert logits to probabilities
+probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
+
+# Predict all test images
+predictions = probability_model.predict(test_images)
