@@ -20,29 +20,29 @@ class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 
 plt.figure()
 plt.imshow(train_images[0])
 plt.colorbar()
-plt.grid(False)
-plt.show()
 
+#Scale the values to 0 and 1 for activation function
 train_images = train_images / 255.0
-
 test_images = test_images / 255.0
 
-plt.figure(figsize=(10,10))
+plt.figure(figsize=(7,7))
 for i in range(25):
     plt.subplot(5,5,i+1)
     plt.xticks([])
     plt.yticks([])
-    plt.grid(False)
     plt.imshow(train_images[i], cmap=plt.cm.binary)
     plt.xlabel(class_names[train_labels[i]])
+
 plt.show()
 
+# Building the model
 model = keras.Sequential([
     keras.layers.Flatten(input_shape=(28, 28)),
     keras.layers.Dense(128, activation='relu'),
     keras.layers.Dense(10, activation='softmax')
 ])
 
+# Compile the model
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
