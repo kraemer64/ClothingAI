@@ -17,9 +17,9 @@ fashion_mnist = keras.datasets.fashion_mnist
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
 # Preprocess clothing data
-plt.figure()
-plt.imshow(train_images[0])
-plt.colorbar()
+# plt.figure()
+# plt.imshow(train_images[0])
+# plt.colorbar()
 
 #Scale the values to 0 and 1 for activation function
 train_images = train_images / 255.0
@@ -59,3 +59,8 @@ probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
 
 # Predict all test images
 predictions = probability_model.predict(test_images)
+
+for i in range(25):
+    print('\nImage {}===================================================='.format(i+1))
+    print('Cloath Prediction:',class_names[np.argmax(predictions[i])])
+    print('Actual Cloath:',class_names[test_labels[i]])
